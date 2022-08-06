@@ -1,0 +1,88 @@
+{% extends 'algs/base.html' %}
+
+{% block content %}
+    <section class="content_article">
+        <div class="title_art_block">
+            <h1 class="title_art">{{ article.title }}</h1>
+        </div>
+
+        <div class="main_of_article">
+            {% autoescape off %}
+                {{ article.content }}
+            {% endautoescape %}
+        </div>
+
+        <div class="notes_here">
+            <h2>Дополни статью:</h2>
+
+            <form action="{{ request.path }}" method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+
+                <button type="submit">Добавить</button>
+            </form>
+
+            <div class="all_notes">
+                <h2 class="all_notes_title">Все дополнения к статье:</h2>
+                
+                {% if notes %}
+                    {% for note in notes %}
+                        <div class="note" id="{{ note.id }}">
+                            <strong>{{ note.name }}</strong>
+                            <div class="content_note">
+                                {{ note.content | linebreaks }}
+                                {% if request.user.is_superuser %}
+                                    <div class="delete_block">
+                                        <button class="delete_note_button">Удалить</button>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="empty_note">
+                        <strong>Пусть ваша заметка станет первой ;)</strong>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+
+    <hr class="line_delimiter">
+
+    <h2 class="invite_read_title">Смотрите также:</h2>
+
+    <section class="prev_and_next" {% if not prev_art or not next_art %} style="grid-template-columns: unset;" {% endif %}>
+        {% if prev_art %}
+
+                <div class="art prev" {% if not next_art %}style="justify-self: center; width: 50%;"{% endif %}>
+            
+                    <div class="small_content">
+                        <strong class="art_title">{{ prev_art.title }} <u>({{ prev_art.category }})</u></strong>
+                        <br>
+                        <p class="art_date">Создано: {{ prev_art.create_at }}</p>
+                        <p class="art_content">{{ prev_art.content | truncatewords:15 | striptags }}</p>
+                        <div class="art_read_block">
+                            <a href="{{ prev_art.get_absolute_url }}" class="art_read">Читать</a>
+                        </div>
+                    </div>
+                </div>
+        {% endif %}
+
+        {% if next_art %}
+
+            <div class="art next" {% if not prev_art %}style="justify-self: center; width: 50%;"{% endif %}>
+
+                <div class="small_content">
+                    <strong class="art_title">{{ next_art.title }} <u>({{ next_art.category }})</u></strong>
+                    <br>
+                    <p class="art_date">Создано: {{ next_art.create_at }}</p>
+                    <p class="art_content">{{ next_art.content | truncatewords:15 | striptags }}</p>
+                    <div class="art_read_block">
+                        <a href="{{ next_art.get_absolute_url }}" class="art_read">Читать</a>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </section>
+{% endblock %}

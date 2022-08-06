@@ -1,0 +1,17 @@
+{% for art in articles %}
+    <div class="art">
+        <div class="art_photo">
+            <img src="{{ art.photo.url }}">
+        </div>
+
+        <div class="small_content">
+            <strong class="art_title">{{ art.title }} <u>({{ art.category }})</u></strong>
+            <br>
+            <p class="art_date">Создано: {{ art.create_at }}</p>
+            <p class="art_content">{{ art.content | truncatewords:15 | striptags }}</p>
+            <div class="art_read_block">
+                <a href="{{ art.get_absolute_url }}" class="art_read">Читать</a>
+            </div>
+        </div>
+    </div>
+{% endfor %}

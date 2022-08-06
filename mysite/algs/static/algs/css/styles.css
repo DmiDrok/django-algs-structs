@@ -1,0 +1,228 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+/*
+    font-family: 'Inter', sans-serif;
+
+    font-family: 'Montserrat', sans-serif;
+*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f1f1f1;
+}
+
+header {
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    background-color: #000;
+}
+
+header .category {
+    padding: 2rem;
+    color: #fff;
+    text-align: center;
+    font-size: 27px;
+    text-decoration: none;
+    transition-duration: .3s;
+}
+
+header .category:hover {
+    -webkit-box-shadow: 0px 0px 72px 0px rgba(221, 221, 221, 0.5) inset;
+    -moz-box-shadow: 0px 0px 72px 0px rgba(214, 214, 214, 0.5) inset;
+    box-shadow: 0px 0px 72px 0px rgba(235, 235, 235, 0.5) inset;
+}
+
+header .category.active {
+    -webkit-box-shadow: 0px 0px 72px 0px rgba(221, 221, 221, 0.5) inset;
+    -moz-box-shadow: 0px 0px 72px 0px rgba(214, 214, 214, 0.5) inset;
+    box-shadow: 0px 0px 72px 0px rgba(235, 235, 235, 0.5) inset;
+}
+
+.art {
+    background-color: #fff;
+    width: 70%;
+    margin: 2rem auto;
+    border-radius: 5px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: 45% auto;
+    grid-column-gap: 2rem;
+}
+
+.art.prev, .art.next {
+    grid-template-columns: unset;
+    width: 90%;
+}
+
+.art .art_photo {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.art .art_photo img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.art .small_content {
+    display: grid;
+    grid-row-gap: .5rem;
+}
+
+.art .art_title {
+    font-size: 25px;
+}
+
+.art .art_read_block {
+    display: grid;
+}
+
+.art .art_read_block .art_read {
+    padding: 10px 45px;
+    background-color: #128bf4;
+    color: #fff;
+    display: inline-block;
+    justify-self: end;
+    text-decoration: none;
+    border-radius: 3px;
+    font-size: 17px;
+    transition-duration: .3s;
+    display: flex;
+    align-items: center;
+}
+
+.art .art_read_block .art_read:hover {
+    background-color: #092cb9;
+}
+
+.content_article {
+    background-color: #fff;
+    width: 70%;
+    margin: 2rem auto;
+    border-radius: 5px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    padding: 1rem;
+}
+
+.content_article .title_art_block {
+    display: grid;
+    margin-top: 1rem;
+}
+
+.content_article .title_art_block .title_art {
+    font-size: 40px;
+    justify-self: center;
+}
+
+.content_article .main_of_article {
+    margin-top: 2rem;
+    text-align: justify;
+    text-indent: 1rem;
+}
+
+.content_article .main_of_article p {
+    margin-top: 1rem;
+}
+
+.prev_and_next {
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+}
+
+.content_article .main_of_article .code {
+    font-size: 20px;
+    padding: 1rem;
+}
+
+.invite_read_title {
+    font-size: 27px;
+    text-align: center;
+}
+
+.line_delimiter {
+    margin: 5rem;
+    background-color: #000;
+}
+
+.notes_here {
+    padding: 1rem;
+    border-top: 2px solid #000;
+}
+
+.notes_here form {
+    margin-top: 1.5rem;
+    display: grid;
+    grid-row-gap: 2.5rem;
+    width: 30%;
+}
+
+.notes_here form p {
+    display: grid;
+    grid-row-gap: 1rem;
+}
+
+.notes_here form textarea {
+    resize: vertical;
+    font-size: 14px;
+    padding: 5px 10px;
+}
+
+.notes_here form input {
+    padding: 5px 10px;
+}
+
+.notes_here form button[type="submit"] {
+    width: 50%;
+    padding: 5px 15px;
+    font-size: 15px;
+    cursor: pointer;
+    justify-self: end;
+}
+
+.all_notes {
+    margin: 1rem 0;
+    padding: 1rem 0;
+    border-top: 2px solid #000;
+}
+
+.all_notes .all_notes_title {
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+}
+
+.all_notes .note {
+    margin: 1rem;
+    padding: 1rem;
+}
+
+.all_notes .empty_note {
+    margin: 1rem 0;
+}
+
+.content_note {
+    margin-top: 1rem;
+}
+
+.delete_note_button {
+    padding: 5px 10px;
+    font-size: 16px;
+    cursor: pointer;
+    justify-self: end;
+}
+
+.delete_block {
+    display: grid;
+}
+
+.delete_block .delete_note_button {
+    justify-self: end;
+}
